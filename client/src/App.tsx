@@ -4,11 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { ToastContainer } from "react-toastify";
-import { URL } from "./common/types";
+import { Domain, HOST, URL } from "./common/types";
 import { axiosInstance, formattedDate, toastError, toastSuccess } from "./common/utility";
 
 function App() {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState<string>("");
   const [dataArr, setDataArr] = useState<URL[]>([]);
 
   useEffect(() => {
@@ -17,6 +17,12 @@ function App() {
       toastSuccess(data.msg);
     });
   }, []);
+
+  let something: Record<Domain, HOST> = {
+    '.com': { pathname: "www", url: "http" },
+    ".in": { pathname: "www", url: "http" }
+  };
+  console.log(something['.com']);
 
   return (
     <>

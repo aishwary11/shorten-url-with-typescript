@@ -4,3 +4,10 @@ export type URL = {
     urlCode: string,
     createdAt: Date;
 };
+
+export type HOST = {
+    pathname: string,
+    url: string;
+};
+
+export type Domain = ".com" | ".in";
