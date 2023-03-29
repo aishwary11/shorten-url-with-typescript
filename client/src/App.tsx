@@ -41,7 +41,6 @@ function App() {
               <th>Long Url</th>
               <th>Short Url</th>
               <th>Time</th>
-              {/* <th>Action</th> */}
             </tr>
           </thead>
           <tbody>
@@ -49,16 +48,8 @@ function App() {
               <tr key={i + 1}>
                 <td>{i + 1}</td>
                 <td>{data.longUrl}</td>
-                <td>{data.shortUrl}</td>
+                <td><a href={data.longUrl} target="_blank">{data.shortUrl}</a></td>
                 <td>{formattedDate(data.createdAt)}</td>
-                {/* <td><a target="_blank"
-                  onClick={async (e) => {
-                    const redirect = await axiosInstance.get(`/${data.urlCode}`);
-                    if (redirect.data) {
-                      toastSuccess(redirect.data.msg);
-                    }
-                  }}
-                >{data.shortUrl}</a></td> */}
               </tr>)}
           </tbody>
         </Table>
