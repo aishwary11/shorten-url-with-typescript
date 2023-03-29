@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
 
 const URLSchema = new mongoose.Schema({
-    urlCode: String,
-    longUrl: String,
-    shortUrl: String,
+    urlCode: {
+        type: String,
+        unique: true
+    },
+    longUrl: {
+        type: String,
+        unique: true
+    },
+    shortUrl: {
+        type: String,
+        unique: true
+    },
 }, { timestamps: true });
 
 export default mongoose.model('URL', URLSchema);
