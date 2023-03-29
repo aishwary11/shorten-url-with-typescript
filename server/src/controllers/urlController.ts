@@ -20,7 +20,7 @@ export const postUrl = async (req: Request, res: Response) => {
     }
 };
 
-export const redirectUrl = async (req: Request, res: Response) => {
+export const reDirectUrl = async (req: Request, res: Response) => {
     const { urlCode } = req.params;
     const redirectUrl = await URL.findOne({ urlCode });
     if (redirectUrl) return res.redirect(redirectUrl.longUrl as string);
