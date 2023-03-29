@@ -8,3 +8,7 @@
     box-sizing: border-box;
     font-family: 'PT Sans', sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
