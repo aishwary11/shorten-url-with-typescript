@@ -1,12 +1,12 @@
 export type URL = {
-    shortUrl: string,
-    longUrl: string,
-    urlCode: string,
+    shortUrl: string;
+    longUrl: string;
+    urlCode: string;
     createdAt: Date;
 };
 
 export type HOST = {
-    pathname: string,
+    pathname: string;
     url: string;
 };
 

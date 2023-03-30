@@ -54,7 +54,7 @@ function App() {
               <tr key={i + 1}>
                 <td>{i + 1}</td>
                 <td>{data.longUrl}</td>
-                <td><a href={data.longUrl} target="_blank">{data.shortUrl}</a></td>
+                <td><a href={data.longUrl as string} target="_blank">{data.shortUrl}</a></td>
                 <td>{formattedDate(data.createdAt)}</td>
               </tr>)}
           </tbody>
