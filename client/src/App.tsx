@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { ToastContainer } from "react-toastify";
-import { Domain, HOST, URL } from "./common/types";
+import { URL } from "./common/types";
 import { axiosInstance, formattedDate, toastError, toastSuccess } from "./common/utility";
 
 function App() {
@@ -18,27 +18,26 @@ function App() {
     });
   }, []);
 
-  let something: Record<Domain, HOST> = {
-    '.com': { pathname: "www", url: "http" },
-    ".in": { pathname: "www", url: "http" }
-  };
-  console.log(something['.com']);
+  // let something: Record<Domain, HOST> = {
+  //   '.com': { pathname: "www", url: "http" },
+  //   ".in": { pathname: "www", url: "http" }
+  // };
 
   return (
     <>
       <ToastContainer />
       <InputGroup className="mb-3">
         <Form.Control placeholder="Enter Url" onChange={(e) => setUrl(e.target.value)} />
-        <Button variant="outline-secondary" onClick={async (e) => {
-          const { data, status } = await axiosInstance.post('/shorten', { longUrl: url });
-          if (status == 200) toastSuccess(data?.msg ?? "Data saved");
-          else toastError(data?.msg ?? "Something went wrong");
-          const getUrls = await axiosInstance.get('/');
-          if (getUrls) setDataArr(getUrls.data.urls);
+        <Button variant="outline-secondary" onClick={(e) => {
+          axiosInstance.post('/shorten', { longUrl: url }).then(({ data, status }) => {
+            if (status == 200) toastSuccess(data?.msg);
+            else toastError(data?.msg);
+          }).catch((err) => toastError(err ?? "Something went wrong"));
+          axiosInstance.get('/').then((res) => setDataArr(res.data.urls));
         }}>
           Shorten URL
         </Button>
-      </InputGroup>
+      </InputGroup >
       {!dataArr.length ? <p>No data</p> :
         <Table striped bordered hover>
           <thead>
