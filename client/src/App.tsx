@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     axiosInstance.get('/').then(({ data }) => {
-      setDataArr(data.urls);
+      setDataArr(data.data);
       toastSuccess(data.msg);
     });
   }, []);
@@ -33,7 +33,7 @@ function App() {
             if (status == 200) toastSuccess(data?.msg);
             else toastError(data?.msg);
           }).catch((err) => toastError(err ?? "Something went wrong"));
-          axiosInstance.get('/').then((res) => setDataArr(res.data.urls));
+          axiosInstance.get('/').then((res) => setDataArr(res.data.data));
         }}>
           Shorten URL
         </Button>
