@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import shortid from "shortid";
 import validUrl from "valid-url";
 import URL from "../model/Url";
-import { errorResp, redirectResp, successResp } from "../utils/helpers";
+import { errorResp, successResp } from "../utils/helpers";
 
 export const postUrl = async (req: Request, res: Response) => {
     try {
@@ -24,7 +24,7 @@ export const postUrl = async (req: Request, res: Response) => {
 export const reDirectUrl = async (req: Request, res: Response) => {
     const { urlCode } = req.params;
     const redirectUrl = await URL.findOne({ urlCode });
-    if (redirectUrl) return redirectResp(res, redirectUrl.longUrl as string);
+    if (redirectUrl) return res.redirect(redirectUrl.longUrl as string);
     return await errorResp(res, 500, "Something went wrong");
 };
 
