@@ -4,12 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { ToastContainer } from "react-toastify";
-import { URL } from "./common/types";
 import { axiosInstance, formattedDate, toastError, toastSuccess } from "./common/utility";
 
 function App() {
   const [url, setUrl] = useState<string>("");
-  const [dataArr, setDataArr] = useState<URL[]>([]);
+  const [dataArr, setDataArr] = useState<Url[]>([]);
 
   useEffect(() => {
     axiosInstance.get('/').then(({ data }) => {

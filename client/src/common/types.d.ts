@@ -1,13 +1,13 @@
-export type URL = {
+type Url = {
     shortUrl: string;
     longUrl: string;
     urlCode: string;
     createdAt: Date;
 };
 
-export type HOST = {
+type Host = {
     pathname: string;
     url: string;
 };
 
-export type Domain = ".com" | ".in";
+type Domain = ".com" | ".in";
