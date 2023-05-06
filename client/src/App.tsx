@@ -17,27 +17,22 @@ function App() {
     });
   }, []);
 
-  // let something: Record<Domain, HOST> = {
-  //   '.com': { pathname: "www", url: "http" },
-  //   ".in": { pathname: "www", url: "http" }
-  // };
-
   return (
     <>
       <ToastContainer />
       <InputGroup className="mb-3">
         <Form.Control placeholder="Enter Url" onChange={(e) => setUrl(e.target.value)} />
-        <Button variant="outline-secondary" onClick={(e) => {
-          axiosInstance.post('/shorten', { longUrl: url }).then(({ data, status }) => {
+        <Button variant="outline-secondary" onClick={async (e) => {
+          await axiosInstance.post('/shorten', { longUrl: url }).then(({ data, status }) => {
             if (status == 200) toastSuccess(data?.msg);
             else toastError(data?.msg);
           }).catch((err) => toastError(err ?? "Something went wrong"));
-          axiosInstance.get('/').then((res) => setDataArr(res.data.data));
+          await axiosInstance.get('/').then((res) => setDataArr(res.data.data));
         }}>
           Shorten URL
         </Button>
       </InputGroup >
-      {!dataArr.length ? <p>No data</p> :
+      {dataArr == undefined || !dataArr.length ? <p>No data</p> :
         <Table striped bordered hover>
           <thead>
             <tr>

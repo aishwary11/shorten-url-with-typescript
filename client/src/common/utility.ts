@@ -1,7 +1,10 @@
 import axios from "axios";
 import { toast, ToastOptions } from "react-toastify";
 
-export const axiosInstance = axios.create({ baseURL: import.meta.env.VITE_BASE_URL });
+export const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL,
+    cancelToken: axios.CancelToken.source().token
+});
 
 const toastConfig: ToastOptions = {
     autoClose: 3000,
