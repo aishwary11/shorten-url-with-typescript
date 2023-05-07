@@ -22,14 +22,22 @@ export const postUrl = async (req: Request, res: Response) => {
 };
 
 export const reDirectUrl = async (req: Request, res: Response) => {
-    const { urlCode } = req.params;
-    const redirectUrl = await URL.findOne({ urlCode });
-    if (redirectUrl) return res.redirect(redirectUrl.longUrl as string);
-    return await errorResp(res, 500, "Something went wrong");
+    try {
+        const { urlCode } = req.params;
+        const redirectUrl = await URL.findOne({ urlCode });
+        if (redirectUrl) return res.redirect(redirectUrl.longUrl as string);
+        return await errorResp(res, 400, "Something went wrong");
+    } catch (error) {
+        return await errorResp(res, 500, "Something went wrong");
+    }
 };
 
 export const getUrls = async (req: Request, res: Response) => {
-    const urls = await URL.find().sort({ createdAt: -1 });
-    if (!urls.length) return successResp(res, 200, "No URL found");
-    return await successResp(res, 200, "URL found", urls);
+    try {
+        const urls = await URL.find().sort({ createdAt: -1 });
+        if (!urls.length) return successResp(res, 200, "No URL found");
+        return await successResp(res, 200, "URL found", urls);
+    } catch (error) {
+        return await errorResp(res, 500, "Something went wrong");
+    }
 };

@@ -1,12 +1,11 @@
 import cors from 'cors';
 import 'dotenv/config';
 import express, { Express, NextFunction, Request, Response } from "express";
-import mongoose from 'mongoose';
 import { getUrls, postUrl, reDirectUrl } from "./controllers/urlController";
+import { connectDB } from './db/config';
 import { errorResp } from './utils/helpers';
-
 const app: Express = express();
-(() => mongoose.connect(process.env.MONGODB_URI || "mongodb://0.0.0.0:27017/urlshortener").then(() => console.log('Connected to Mongo DB')).catch((err) => console.error(`Error in Mongo DB ${err}`)))();
+connectDB();
 app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err) return await errorResp(res, 500, `Error: ${err.message}`);
     next();
