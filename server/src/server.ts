@@ -8,6 +8,7 @@ const app: Express = express();
 connectDB();
 app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err) return await errorResp(res, 500, `Error: ${err.message}`);
+    console.log('Url: ', req.url);
     next();
 });
 app.use(cors());

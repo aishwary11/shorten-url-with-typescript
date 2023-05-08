@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="container mt-3">
       <ToastContainer />
       <InputGroup className="mb-3">
         <Form.Control placeholder="Enter Url" onChange={(e) => setUrl(e.target.value)} />
@@ -53,7 +53,7 @@ function App() {
           </tbody>
         </Table>
       }
-    </>
+    </div>
   );
 }
 
