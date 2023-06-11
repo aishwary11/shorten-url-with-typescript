@@ -24,10 +24,11 @@ function App() {
         <Form.Control placeholder="Enter Url" onChange={(e) => setUrl(e.target.value)} />
         <Button variant="outline-secondary" onClick={async (e) => {
           await axiosInstance.post('/shorten', { longUrl: url }).then(({ data, status }) => {
-            if (status == 200) toastSuccess(data?.msg);
-            else toastError(data?.msg);
+            if (status == 200) {
+              toastSuccess(data?.msg);
+              axiosInstance.get('/').then((res) => setDataArr(res.data.data));
+            } else toastError(data?.msg);
           }).catch((err) => toastError(err ?? "Something went wrong"));
-          await axiosInstance.get('/').then((res) => setDataArr(res.data.data));
         }}>
           Shorten URL
         </Button>
@@ -40,6 +41,7 @@ function App() {
               <th>Long Url</th>
               <th>Short Url</th>
               <th>Time</th>
+              <th>Delete Post</th>
             </tr>
           </thead>
           <tbody>
@@ -49,11 +51,18 @@ function App() {
                 <td>{data.longUrl}</td>
                 <td><a href={data.longUrl as string} target="_blank">{data.shortUrl}</a></td>
                 <td>{formattedDate(data.createdAt)}</td>
+                <td><Button variant='danger' onClick={async (e) => axiosInstance.delete(`/${data.urlCode}`).then(({ data, status }) => {
+                  if (status == 200) {
+                    toastSuccess(data?.msg);
+                    axiosInstance.get('/').then((res) => setDataArr(res.data.data));
+                  } else toastError(data?.msg);
+                }).catch((err) => toastError(err ?? "Something went wrong"))
+                }>Delete Post</Button></td>
               </tr>)}
           </tbody>
         </Table>
       }
-    </div>
+    </div >
   );
 }
 

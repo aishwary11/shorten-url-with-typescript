@@ -20,12 +20,33 @@ export const postUrl = async (req: Request, res: Response) => {
         return errorResp(res, 500, `Error :: ${err}`);
     }
 };
+export const formUrl = async (req: Request, res: Response) => {
+    try {
+        return await successResp(res, 200, "Success", req.body);
+    } catch (err) {
+        if (err instanceof Error) {
+            return errorResp(res, 500, `Error :: ${err.message}`);
+        }
+        return errorResp(res, 500, `Error :: ${err}`);
+    }
+};
 
 export const reDirectUrl = async (req: Request, res: Response) => {
     try {
         const { urlCode } = req.params;
         const redirectUrl = await URL.findOne({ urlCode });
         if (redirectUrl) return res.redirect(redirectUrl.longUrl as string);
+        return await errorResp(res, 400, "Something went wrong");
+    } catch (error) {
+        return await errorResp(res, 500, "Something went wrong");
+    }
+};
+
+export const deletePost = async (req: Request, res: Response) => {
+    try {
+        const { urlCode } = req.params;
+        const deletePst = await URL.deleteOne({ urlCode });
+        if (deletePst) return successResp(res, 200, "Post delete");
         return await errorResp(res, 400, "Something went wrong");
     } catch (error) {
         return await errorResp(res, 500, "Something went wrong");
