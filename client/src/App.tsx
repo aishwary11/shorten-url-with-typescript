@@ -11,9 +11,9 @@ function App() {
   const [dataArr, setDataArr] = useState<Url[]>([]);
 
   useEffect(() => {
-    axiosInstance.get('/').then(({ data }) => {
-      setDataArr(data.data);
-      toastSuccess(data.msg);
+    axiosInstance.get('/').then(({ data: { data, msg } }) => {
+      setDataArr(data);
+      toastSuccess(msg);
     });
   }, []);
 
