@@ -6,7 +6,7 @@ export const connectDB = async () => {
     if (connect) console.log('Connected to MongoDB');
     else console.error("Error while connect", connect);
   } catch (error) {
-    setTimeout(connectDB, 10000);
     console.error("Error while connect", error);
+    setTimeout(connectDB, 10000);
   }
 };
