@@ -2,7 +2,7 @@ type Url = {
     shortUrl: string;
     longUrl: string;
     urlCode: string;
-    createdAt: Date;
+    createdAt: string;
 };
 
 type Host = {

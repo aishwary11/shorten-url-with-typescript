@@ -1,4 +1,5 @@
 import axios from "axios";
+import React from "react";
 import { toast, ToastOptions } from "react-toastify";
 
 export const axiosInstance = axios.create({
@@ -14,10 +15,10 @@ const toastConfig: ToastOptions = {
     theme: "colored"
 };
 
-export const toastSuccess = (msg: string) => toast.success(msg, toastConfig);
-export const toastError = (msg: string) => toast.error(msg, toastConfig);
+export const toastSuccess = (msg: string): React.ReactText => toast.success(msg, toastConfig);
+export const toastError = (msg: string): React.ReactText => toast.error(msg, toastConfig);
 
-export const formattedDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
+export const formattedDate = (dateString: string) => new Intl.DateTimeFormat('en-US', {
     timeZone: 'Asia/Kolkata',
     year: 'numeric',
     month: 'short',
@@ -26,4 +27,4 @@ export const formattedDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
     minute: 'numeric',
     second: 'numeric',
     hour12: false
-}).format(new Date(date));
+}).format(new Date(dateString));

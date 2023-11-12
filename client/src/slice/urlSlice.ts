@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { axiosInstance, toastSuccess } from "../common/utility";
+import { axiosInstance, toastError, toastSuccess } from "../common/utility";
 
 export const urlList = createAsyncThunk("url/list", async () => {
   const { data } = await axiosInstance.get("/");
@@ -22,6 +22,7 @@ const urlSlice = createSlice({
         return payload;
       })
       .addCase(urlList.rejected, () => {
+        toastError("Something went wrong");
         return initialState;
       });
   }

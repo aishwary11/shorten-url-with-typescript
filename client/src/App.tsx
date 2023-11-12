@@ -12,10 +12,10 @@ function App() {
   const [url, setUrl] = useState<string>("");
   const [dataArr, setDataArr] = useState<Url[]>([]);
   const dispatch = useDispatch();
-  const urlData = useSelector((state) => state.urlReducer);
+  const urlData: any = useSelector<any>((state) => state.urlReducer);
   // !urlData?.data.length ? toastError(urlData?.data.msg) : toastSuccess(urlData?.data.msg);
   useEffect(() => {
-    dispatch(urlList());
+    dispatch<any>(urlList());
   }, []);
 
   return (
@@ -23,7 +23,7 @@ function App() {
       <ToastContainer />
       <InputGroup className="mb-3">
         <Form.Control placeholder="Enter Url" onChange={(e) => setUrl(e.target.value)} />
-        <Button variant="outline-secondary" onClick={async (e) => {
+        <Button variant="outline-secondary" onClick={async () => {
           await axiosInstance.post('/shorten', { longUrl: url }).then(({ data, status }) => {
             if (status == 200) {
               toastSuccess(data?.msg);
