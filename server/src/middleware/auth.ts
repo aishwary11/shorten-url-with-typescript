@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import responseHandler from "../utils/helpers";
+import responseHandler from "../utils/responsehelpers";
 
 type AuthenticatedRequest = Request & {
   user?: any;

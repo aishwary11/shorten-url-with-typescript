@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
-import responseHandler from './helpers';
+import responseHandler from './responsehelpers';
 
 const formSchema = Joi.object({
   name: Joi.string().min(3).max(50).required(),

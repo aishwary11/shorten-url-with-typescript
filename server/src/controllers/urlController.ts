@@ -3,7 +3,7 @@ import shortid from "shortid";
 import validUrl from "valid-url";
 import URL from "../model/Url";
 import asyncHandler from "../utils/asynchandler";
-import responseHandler from "../utils/helpers";
+import responseHandler from "../utils/responsehelpers";
 
 export const postUrl = asyncHandler(async (req: Request, res: Response) => {
     try {

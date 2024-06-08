@@ -4,7 +4,7 @@ import express, { Express, NextFunction, Request, Response } from "express";
 import { deletePost, formUrl, getUrls, postUrl, reDirectUrl } from "./controllers/urlController";
 import connectDB from './db/config';
 import { validateForm } from './utils/formvalidator';
-import responseHandler from './utils/helpers';
+import responseHandler from './utils/responsehelpers';
 const app: Express = express();
 const port = process.env.PORT;
 connectDB();
