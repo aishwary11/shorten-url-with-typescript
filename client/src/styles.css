@@ -1,0 +1,15 @@
+/* @media (width >320px)
+{
+  .container
+  {
+    background-color: red;
+  }
+} */
+
+@media (321px <=width <=600px)
+{
+  .container
+  {
+    background-color: red;
+  }
+}

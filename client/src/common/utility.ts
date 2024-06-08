@@ -1,22 +1,14 @@
 import axios from "axios";
 import React from "react";
-import { toast, ToastOptions } from "react-toastify";
+import { toast } from "react-toastify";
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     cancelToken: axios.CancelToken.source().token
 });
 
-const toastConfig: ToastOptions = {
-    autoClose: 3000,
-    position: toast.POSITION.TOP_RIGHT,
-    hideProgressBar: false,
-    closeOnClick: true,
-    theme: "colored"
-};
-
-export const toastSuccess = (msg: string): React.ReactText => toast.success(msg, toastConfig);
-export const toastError = (msg: string): React.ReactText => toast.error(msg, toastConfig);
+export const toastSuccess = (msg: string): React.ReactNode => toast.success(msg);
+export const toastError = (msg: string): React.ReactNode => toast.error(msg);
 
 export const formattedDate = (dateString: string) => new Intl.DateTimeFormat('en-US', {
     timeZone: 'Asia/Kolkata',

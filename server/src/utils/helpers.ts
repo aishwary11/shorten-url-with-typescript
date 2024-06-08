@@ -1,4 +1,5 @@
-import { Response } from "express";
+import { type Response } from "express";
 
-export const successResp = async (res: Response, status: number = 200, msg: string = '', data?: any) => res.status(status).json({ msg, data });
-export const errorResp = async (res: Response, status: number = 400, err: string = '') => res.status(status).json({ err });
+export const responseHandler = (res: Response, statusCode: number = 200, msg: string = '', data?: any) => res.status(statusCode).json({ msg, data, status: statusCode < 400 });
+
+export default responseHandler;
