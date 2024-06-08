@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import shortid from "shortid";
 import validUrl from "valid-url";
 import URL from "../model/Url";
+import asyncHandler from "../utils/asynchandler";
 import responseHandler from "../utils/helpers";
 
-export const postUrl = async (req: Request, res: Response) => {
+export const postUrl = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { longUrl } = req.body;
         if (!validUrl.isUri(longUrl)) return responseHandler(res, 400, "Wrong url");
@@ -19,8 +20,8 @@ export const postUrl = async (req: Request, res: Response) => {
         console.error('Error :: ', err);
         return responseHandler(res, 500, `Error :: ${err}`);
     }
-};
-export const formUrl = async (req: Request, res: Response) => {
+});
+export const formUrl = asyncHandler(async (req: Request, res: Response) => {
     try {
         return responseHandler(res, 200, "Success", req.body);
     } catch (err) {
@@ -29,9 +30,9 @@ export const formUrl = async (req: Request, res: Response) => {
         }
         return responseHandler(res, 500, `Error :: ${err}`);
     }
-};
+});
 
-export const reDirectUrl = async (req: Request, res: Response) => {
+export const reDirectUrl = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { urlCode } = req.params;
         const redirectUrl = await URL.findOne({ urlCode });
@@ -40,9 +41,9 @@ export const reDirectUrl = async (req: Request, res: Response) => {
     } catch (error) {
         return responseHandler(res, 500, "Something went wrong");
     }
-};
+});
 
-export const deletePost = async (req: Request, res: Response) => {
+export const deletePost = asyncHandler(async (req: Request, res: Response) => {
     try {
         const { urlCode } = req.params;
         const deletePst = await URL.deleteOne({ urlCode });
@@ -51,9 +52,9 @@ export const deletePost = async (req: Request, res: Response) => {
     } catch (error) {
         return responseHandler(res, 500, "Something went wrong");
     }
-};
+});
 
-export const getUrls = async (req: Request, res: Response) => {
+export const getUrls = asyncHandler(async (req: Request, res: Response) => {
     try {
         const urls = await URL.find().sort({ createdAt: -1 });
         if (!urls.length) return responseHandler(res, 200, "No URL found");
@@ -61,4 +62,4 @@ export const getUrls = async (req: Request, res: Response) => {
     } catch (error) {
         return responseHandler(res, 500, "Something went wrong");
     }
-};
+});
