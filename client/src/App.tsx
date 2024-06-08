@@ -21,21 +21,22 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { data: { data, status, msg } } = await axiosInstance.post('/shorten', { longUrl: url });
     try {
-      const { data: { data, status, msg } } = await axiosInstance.post('/shorten', { longUrl: url });
       if (status) {
         toastSuccess(msg);
         dispatch<any>(urlList());
         setUrl("");
       } else toastError(msg);
     } catch (err: any) {
+      console.error('bdhsvdshvbsh', msg);
       toastError(err || "Something went wrong");
     }
   };
 
   const handleDelete = async (urlCode: string) => {
+    const { data: { status, msg } } = await axiosInstance.delete(`/${urlCode}`);
     try {
-      const { data: { status, msg } } = await axiosInstance.delete(`/${urlCode}`);
       if (status) {
         toastSuccess(msg);
         dispatch<any>(urlList());
@@ -47,7 +48,7 @@ function App() {
 
   return (
     <div className="container mt-3">
-      <ToastContainer theme="colored" position="top-right" />
+      <ToastContainer theme="colored" autoClose={2000} position="top-right" />
       <Form onSubmit={handleSubmit}>
         <InputGroup className="mb-3">
           <Form.Control placeholder="Enter Url" value={url} onChange={(e) => setUrl(e.target.value)} />

@@ -6,7 +6,7 @@ export const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     cancelToken: axios.CancelToken.source().token
 });
-
+axiosInstance.interceptors.response.use((response) => response, (error) => toastError(error.response.data.msg));
 export const toastSuccess = (msg: string): React.ReactNode => toast.success(msg);
 export const toastError = (msg: string): React.ReactNode => toast.error(msg);
 
