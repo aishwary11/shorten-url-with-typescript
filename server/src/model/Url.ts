@@ -1,18 +1,31 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Model, Schema, model } from 'mongoose';
 
-const URLSchema = new mongoose.Schema({
+interface URL extends Document {
+  urlCode: string;
+  longUrl: string;
+  shortUrl: string;
+}
+
+const URLSchema: Schema<URL> = new mongoose.Schema(
+  {
     urlCode: {
-        type: String,
-        unique: true
+      type: String,
+      unique: true,
+      required: true,
     },
     longUrl: {
-        type: String,
-        unique: true
+      type: String,
+      unique: true,
+      required: true,
     },
     shortUrl: {
-        type: String,
-        unique: true
+      type: String,
+      unique: true,
+      required: true,
     },
-}, { timestamps: true });
+  },
+  { timestamps: true },
+);
 
-export default mongoose.model('URL', URLSchema);
+const URLModel: Model<URL> = model<URL>('URL', URLSchema);
+export default URLModel;

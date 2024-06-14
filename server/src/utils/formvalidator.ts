@@ -11,7 +11,7 @@ const formSchema = Joi.object({
 export const validateForm = async (req: Request, res: Response, next: NextFunction) => {
   const { error } = formSchema.validate(req.body);
   if (error) {
-    const errorMessage = error.details.map((detail) => detail.message).join(', ');
+    const errorMessage = error.details.map(detail => detail.message).join(', ');
     return responseHandler(res, 400, errorMessage);
   }
   next();

@@ -6,10 +6,8 @@
   }
 } */
 
-@media (321px <=width <=600px)
-{
-  .container
-  {
+@media (321px <=width <=600px) {
+  .container {
     background-color: red;
   }
 }

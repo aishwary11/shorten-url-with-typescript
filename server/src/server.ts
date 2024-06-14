@@ -1,7 +1,8 @@
 import cors from 'cors';
 import 'dotenv/config';
-import express, { Express, NextFunction, Request, Response } from "express";
-import { deletePost, formUrl, getUrls, postUrl, reDirectUrl } from "./controllers/urlController";
+import express, { Express, NextFunction, Request, Response } from 'express';
+import helmet from 'helmet';
+import { deletePost, formUrl, getUrls, login, postUrl, reDirectUrl, signUp } from './controllers/urlController';
 import connectDB from './db/config';
 import { validateForm } from './utils/formvalidator';
 import responseHandler from './utils/responsehelpers';
@@ -9,12 +10,16 @@ const app: Express = express();
 const port = process.env.PORT;
 connectDB();
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
-app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
-    if (err) return responseHandler(res, 500, `Error: ${err.message}`);
-    console.log('Url: ', req.url);
-    next();
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  if (err) return responseHandler(res, 500, `Error: ${err.message}`);
+  console.log('Url: ', req.url);
+  next();
 });
+app.post('/login', login);
+app.post('/signup', signUp);
+// app.use(isAuthenticated);
 app.get('/', getUrls);
 app.get('/:urlCode', reDirectUrl);
 app.post('/shorten', postUrl);

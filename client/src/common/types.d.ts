@@ -1,13 +1,13 @@
 type Url = {
-    shortUrl: string;
-    longUrl: string;
-    urlCode: string;
-    createdAt: string;
+  shortUrl: string;
+  longUrl: string;
+  urlCode: string;
+  createdAt: string;
 };
 
 type Host = {
-    pathname: string;
-    url: string;
+  pathname: string;
+  url: string;
 };
 
-type Domain = ".com" | ".in";
+type Domain = '.com' | '.in';
