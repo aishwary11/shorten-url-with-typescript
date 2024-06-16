@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { axiosInstance, toastError, toastSuccess } from '../common/utility';
+import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const urlList = createAsyncThunk('url/list', async () => {
   const { data } = await axiosInstance.get('/');
@@ -7,7 +7,6 @@ export const urlList = createAsyncThunk('url/list', async () => {
 });
 
 const initialState: Url[] = [];
-
 const urlSlice = createSlice({
   name: 'Url',
   initialState,
@@ -17,7 +16,7 @@ const urlSlice = createSlice({
       .addCase(urlList.pending, () => {
         return initialState;
       })
-      .addCase(urlList.fulfilled, (state, { payload }) => {
+      .addCase(urlList.fulfilled, (_state, { payload }) => {
         toastSuccess(payload.msg);
         return payload;
       })

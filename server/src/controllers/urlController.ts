@@ -2,19 +2,19 @@ import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import shortid from 'shortid';
 import validUrl from 'valid-url';
+import asyncHandler from '../common/utils/asynchandler';
+import responseHandler from '../common/utils/responsehelpers';
+import { generateToken } from '../common/utils/token';
 import URL from '../model/Url';
 import User from '../model/User';
-import asyncHandler from '../utils/asynchandler';
-import responseHandler from '../utils/responsehelpers';
-import { generateToken } from '../utils/token';
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
   try {
-    const { email, password, username } = req.body;
-    const user = await User.findOne({ $or: [{ email }, { username }] }).select('+password');
+    const { username, password } = req.body;
+    const user = await User.findOne({ $or: [{ email: username }, { username }] });
     if (!user || !bcrypt.compareSync(password, user.password)) return responseHandler(res, 400, 'User not found or wrong password');
-    const token = generateToken(user);
-    return responseHandler(res, 200, 'Success', { token });
+    const token = generateToken({ password, username, email: user.email });
+    return responseHandler(res, 200, 'Login Successful', { token });
   } catch (error) {
     if (error instanceof Error) return responseHandler(res, 500, `Error :: ${error.message}`);
   }

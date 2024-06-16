@@ -1,15 +1,15 @@
-import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import urlSlice from './slice/urlSlice';
+import userSlice from './slice/userSlice';
 
-const store = configureStore({
-  reducer: {
-    urlReducer: urlSlice,
-  },
-  devTools: true,
+const reducer = combineReducers({
+  urlReducer: urlSlice,
+  userReducer: userSlice,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
-
+const store = configureStore({
+  reducer,
+  // devTools: process.env.NODE_ENV !== 'production',
+});
 export default store;

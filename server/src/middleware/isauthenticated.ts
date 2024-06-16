@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import responseHandler from '../utils/responsehelpers';
-import { verifyToken } from '../utils/token';
+import responseHandler from '../common/utils/responsehelpers';
+import { verifyToken } from '../common/utils/token';
 
 type AuthenticatedRequest = Request & {
   user?: any;

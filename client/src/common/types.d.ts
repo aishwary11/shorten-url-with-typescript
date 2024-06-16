@@ -4,10 +4,5 @@ type Url = {
   urlCode: string;
   createdAt: string;
 };
-
-type Host = {
-  pathname: string;
-  url: string;
-};
-
-type Domain = '.com' | '.in';
+type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
