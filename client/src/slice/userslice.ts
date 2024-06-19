@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import constant from '../common/constant';
-import { axiosInstance, encryptData, toastSuccess } from '../common/utils';
+import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const userLogin = createAsyncThunk('user/login', async (body: any) => {
   const { data } = await axiosInstance.post('/login', body);
-  localStorage.setItem(constant.token, data.data.token);
   return data;
 });
 
@@ -19,14 +18,15 @@ const userSlice = createSlice({
         return initialState;
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
-        payload.data.token = encryptData(payload.data.token);
+        localStorage.setItem(constant.token, payload.data.token);
         payload.isLoggedIn = true;
         state = payload;
+        window.location.replace('/');
         toastSuccess(payload.msg);
         return payload;
       })
       .addCase(userLogin.rejected, () => {
-        // toastError('Something went wrong');
+        toastError('Something went wrong');
         return initialState;
       });
   },

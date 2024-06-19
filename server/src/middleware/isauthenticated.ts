@@ -5,7 +5,7 @@ import { verifyToken } from '../common/utils/token';
 type AuthenticatedRequest = Request & {
   user?: any;
 };
-export const isAuthenticated = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+const isAuthenticated = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return responseHandler(res, 401, 'Access Denied!');
   try {

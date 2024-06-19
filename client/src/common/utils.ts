@@ -9,8 +9,8 @@ export const axiosInstance = axios.create({
   cancelToken: axios.CancelToken.source().token,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem(constant.token)}`
-  }
+    Authorization: `Bearer ${localStorage.getItem(constant.token)}`,
+  },
 });
 
 axiosInstance.interceptors.response.use(

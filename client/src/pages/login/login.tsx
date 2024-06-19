@@ -1,18 +1,15 @@
 import { FormEvent, useState } from 'react';
-import { Button, Col, Container, Form } from 'react-bootstrap'; // Import Container, Row, and Col
+import { Button, Col, Container, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../../slice/userSlice';
 
 const Login = () => {
   const [formBody, setFormBody] = useState({ username: '', password: '' });
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     await dispatch<any>(userLogin(formBody));
-    navigate('/');
   }
 
   return (

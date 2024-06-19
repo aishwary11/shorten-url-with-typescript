@@ -1,10 +1,7 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import constant from '../common/constant';
 
-const ProtectedRoutes: React.FC = () => {
-  const user = localStorage.getItem(constant.token);
-  return user ? <Outlet /> : <Navigate to="/login" />;
-};
+const ProtectedRoutes: React.FC<{ children: React.ReactNode }> = ({ children }) => (localStorage.getItem(constant.token) ? <>{children}</> : <Navigate to="/login" />);
 
 export default ProtectedRoutes;

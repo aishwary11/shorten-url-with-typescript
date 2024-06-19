@@ -9,10 +9,10 @@ import connectDB from './db/config';
 import isAuthenticated from './middleware/isauthenticated';
 const app: Express = express();
 const port = process.env.PORT;
-connectDB();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+connectDB();
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err) return responseHandler(res, 500, `Error: ${err.message}`);
   console.log('Url: ', req.url);
