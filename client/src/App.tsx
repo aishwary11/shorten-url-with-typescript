@@ -13,32 +13,36 @@ function App() {
   // useEffect(() => {
   //   if (user && isLoginPath) location.pathname = '/';
   // }, [user, isLoginPath]);
-  return (
-    <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoutes>
-                <List />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="*"
-            element={<Login />}
-          />
-        </Routes>
-      </Router>
-      <ToastContainer
-        theme="colored"
-        autoClose={2000}
-        position="top-right"
-      />
-    </>
-  );
+  const isOnline = navigator.onLine;
+  if (isOnline) {
+    return (
+      <>
+        <Router>
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes>
+                  <List />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="*"
+              element={<Login />}
+            />
+          </Routes>
+        </Router>
+        <ToastContainer
+          theme="colored"
+          autoClose={2000}
+          position="top-right"
+        />
+      </>
+    );
+  } else {
+    return <h1>App is offline</h1>;
+  }
 }
-
 export default App;
