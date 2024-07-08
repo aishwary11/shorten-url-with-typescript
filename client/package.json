@@ -11,15 +11,15 @@
     "start": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.5",
+    "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
     "react": "^18.3.1",
-    "react-bootstrap": "^2.10.2",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
-    "react-router-dom": "^6.23.1",
+    "react-router-dom": "^6.24.1",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "prettier": "^3.3.2",
-    "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
   }
 }
