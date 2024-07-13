@@ -3,7 +3,7 @@ import constant from '../common/constant';
 import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const userLogin = createAsyncThunk('user/login', async (body: any) => {
-  const { data } = await axiosInstance.post('/login', body);
+  const { data } = await axiosInstance.post('/user/login', body);
   return data;
 });
 

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const urlList = createAsyncThunk('url/list', async () => {
-  const { data } = await axiosInstance.get('/');
+  const { data } = await axiosInstance.get('/url/');
   return data;
 });
 

@@ -17,7 +17,7 @@ const List = () => {
     e.preventDefault();
     const {
       data: { status, msg },
-    } = await axiosInstance.post('/shorten', { longUrl: url });
+    } = await axiosInstance.post('/url/shorten', { longUrl: url });
     try {
       if (status) {
         toastSuccess(msg);

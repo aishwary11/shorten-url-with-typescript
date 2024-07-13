@@ -9,7 +9,7 @@ const TableList = (props: any) => {
   const handleDelete = async (urlCode: string) => {
     const {
       data: { status, msg },
-    } = await axiosInstance.delete(`/${urlCode}`);
+    } = await axiosInstance.delete(`/url/${urlCode}`);
     try {
       if (status) {
         toastSuccess(msg);
@@ -39,16 +39,11 @@ const TableList = (props: any) => {
           <tr key={i}>
             <td>{i + 1}</td>
             <td>
-              <a
-                href={data.longUrl}
-                target="_blank"
-              >
-                {data.longUrl}
-              </a>
+              <p>{data.longUrl}</p>
             </td>
             <td>
               <a
-                href={data.shortUrl}
+                href={data.longUrl}
                 target="_blank"
               >
                 {data.shortUrl}
