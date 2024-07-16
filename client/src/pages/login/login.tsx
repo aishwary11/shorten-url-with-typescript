@@ -52,7 +52,9 @@ const Login = () => {
         </Form>
       </Col>
     </Container>
-  ) : <Navigate to="/" />;
+  ) : (
+    <Navigate to="/" />
+  );
 };
 
 export default Login;

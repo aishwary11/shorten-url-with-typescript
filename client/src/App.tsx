@@ -10,17 +10,32 @@ function App() {
   const isOnline = window.navigator.onLine;
   return (
     <>
-      <ToastContainer theme="colored" autoClose={3000} position="top-right" />
+      <ToastContainer
+        theme="colored"
+        autoClose={3000}
+        position="top-right"
+      />
       {isOnline ? (
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<ProtectedRoutes><List /></ProtectedRoutes>} />
-            <Route path="*" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes>
+                  <List />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="*"
+              element={<Login />}
+            />
           </Routes>
         </Router>
-      ) : <h1>App is offline</h1 >
-      }
+      ) : (
+        <h1>App is offline</h1>
+      )}
     </>
   );
 }
