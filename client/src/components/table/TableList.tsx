@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { axiosInstance, formattedDate, toastError, toastSuccess } from '../../common/utils';
-import { urlList } from '../../slice/urlSlice';
+import { urlList } from '../../slice/urlslice';
 
 const TableList = (props: any) => {
   const dispatch: AppDispatch = useDispatch();

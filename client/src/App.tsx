@@ -1,8 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Header from './components/header/Header';
 import List from './pages/list/List';
-import Login from './pages/login/login';
+import Login from './pages/login/Login';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import './styles.css';
 
@@ -17,7 +16,6 @@ function App() {
       />
       {isOnline ? (
         <Router>
-          <Header />
           <Routes>
             <Route
               path="/"

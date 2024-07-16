@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../common/types';
 import { axiosInstance, toastError, toastSuccess } from '../../common/utils';
 import TableList from '../../components/table/TableList';
-import { urlList } from '../../slice/urlSlice';
+import { urlList } from '../../slice/urlslice';
 
-const List = () => {
+export default function List() {
   const [url, setUrl] = useState<string>('');
   const dispatch: AppDispatch = useDispatch();
   const urlData: any = useSelector<RootState>(state => state.urlReducer);
 
   useEffect(() => {
-    dispatch<any>(urlList());
+    dispatch(urlList());
   }, []);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,6 +50,4 @@ const List = () => {
       </Form>
     </div>
   );
-};
-
-export default List;
+}

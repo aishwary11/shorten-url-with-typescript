@@ -11,10 +11,10 @@ const initialState = {};
 const userSlice = createSlice({
   name: 'User',
   initialState,
-  reducers: initialState,
+  reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(userLogin.pending, () => {
+      .addCase(userLogin.pending, state => {
         return initialState;
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {

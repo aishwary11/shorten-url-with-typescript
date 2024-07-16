@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import urlSlice from './slice/urlSlice';
-import userSlice from './slice/userSlice';
+import urlReducer from './slice/urlslice';
+import userReducer from './slice/userslice';
 
 const reducer = combineReducers({
-  urlReducer: urlSlice,
-  userReducer: userSlice,
+  urlReducer,
+  userReducer,
 });
 
 const store = configureStore({

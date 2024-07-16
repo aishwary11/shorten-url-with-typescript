@@ -3,20 +3,21 @@ import { Button, Col, Container, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import constant from '../../common/constant';
-import { userLogin } from '../../slice/userSlice';
+import { AppDispatch } from '../../common/types';
+import { userLogin } from '../../slice/userslice';
 
-const Login = () => {
+export default function Login() {
   const token = localStorage.getItem(constant.token);
   const [formBody, setFormBody] = useState({ username: '', password: '' });
   const dispatch: AppDispatch = useDispatch();
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    await dispatch<any>(userLogin(formBody));
+    await dispatch(userLogin(formBody));
   }
   return !token ? (
     <Container
       fluid
-      className="d-flex align-items-center justify-content-center"
+      className="d-flex align-items-center justify-content-center min-vh-100"
     >
       <Col
         xs={12}
@@ -55,6 +56,4 @@ const Login = () => {
   ) : (
     <Navigate to="/" />
   );
-};
-
-export default Login;
+}
