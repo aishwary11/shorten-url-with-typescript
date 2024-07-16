@@ -6,10 +6,10 @@ import { thunk } from 'redux-thunk';
 import urlReducer from './slice/urlslice';
 import userReducer from './slice/userslice';
 
-interface RootState {
+type RootState = {
   url: ReturnType<typeof urlReducer>;
   user: ReturnType<typeof userReducer>;
-}
+};
 
 const rootReducer: Reducer<RootState> = combineReducers({
   url: urlReducer,

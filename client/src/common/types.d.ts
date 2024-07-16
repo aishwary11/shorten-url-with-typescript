@@ -6,6 +6,5 @@ type Url = {
   urlCode: string;
   createdAt: string;
 };
-type RootState = ReturnType<typeof store.getState>;
-type AppDispatch = typeof store.dispatch;
-type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
