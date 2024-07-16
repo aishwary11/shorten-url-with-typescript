@@ -9,7 +9,7 @@ import { urlList } from '../../slice/urlslice';
 export default function List() {
   const [url, setUrl] = useState<string>('');
   const dispatch: AppDispatch = useDispatch();
-  const urlData: any = useSelector<RootState>(state => state.urlReducer);
+  const urlData: any = useSelector<RootState>(state => state.url);
 
   useEffect(() => {
     dispatch(urlList());

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Url } from '../common/types';
 import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const urlList = createAsyncThunk('url/list', async () => {
@@ -16,9 +17,10 @@ const urlSlice = createSlice({
       .addCase(urlList.pending, () => {
         return initialState;
       })
-      .addCase(urlList.fulfilled, (_state, { payload }) => {
+      .addCase(urlList.fulfilled, (state, { payload }) => {
         toastSuccess(payload.msg);
-        return payload;
+        state = payload;
+        return state;
       })
       .addCase(urlList.rejected, () => {
         toastError('Something went wrong');

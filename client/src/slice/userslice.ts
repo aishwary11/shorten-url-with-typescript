@@ -14,16 +14,16 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(userLogin.pending, state => {
+      .addCase(userLogin.pending, () => {
         return initialState;
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         localStorage.setItem(constant.token, payload.data.token);
+        window.location.replace('/');
         payload.isLoggedIn = true;
         state = payload;
-        window.location.replace('/');
         toastSuccess(payload.msg);
-        return payload;
+        return state;
       })
       .addCase(userLogin.rejected, () => {
         toastError('Something went wrong');
