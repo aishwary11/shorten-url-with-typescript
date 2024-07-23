@@ -22,7 +22,7 @@
     "@types/shortid": "^0.0.32",
     "@types/valid-url": "^1.0.7",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
