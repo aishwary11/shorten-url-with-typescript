@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { login, signUp } from '../controllers/user.controller';
-const router = Router();
+const router: Router = Router();
 
 router.post('/login', login);
 router.post('/signup', signUp);
