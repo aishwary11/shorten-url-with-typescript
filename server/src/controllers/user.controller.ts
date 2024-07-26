@@ -27,3 +27,9 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
     return responseHandler(res, 500, `Error :: ${error.message}`);
   }
 });
+
+export const logout = asyncHandler(async (req: Request, res: Response) => {
+  const { email } = req.body;
+  await User.findOne({ email });
+  return responseHandler(res, 200, 'Successful Logout');
+});

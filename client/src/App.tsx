@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Header from './components/header/Header';
 import List from './pages/list/List';
 import Login from './pages/login/Login';
 import ProtectedRoutes from './routes/ProtectedRoutes';
@@ -9,6 +10,7 @@ function App() {
   const isOnline = window.navigator.onLine;
   return (
     <>
+      <Header />
       <ToastContainer
         theme="colored"
         autoClose={3000}
