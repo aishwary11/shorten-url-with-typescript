@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt';
-import mongoose, { Document, Model } from 'mongoose';
+import { Document, Model, Schema, model } from 'mongoose';
 
-export interface User extends Document {
+interface User extends Document {
   email: string;
   password: string;
   username: string;
 }
 
-const UserSchema = new mongoose.Schema<User>(
+const UserSchema = new Schema<User>(
   {
     email: {
       type: String,
@@ -28,13 +28,11 @@ const UserSchema = new mongoose.Schema<User>(
 );
 
 UserSchema.pre<User>('save', async function (next) {
-  if (!this.isModified('password')) {
-    return next();
-  }
+  if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-const UserModel: Model<User> = mongoose.model<User>('User', UserSchema);
+const UserModel: Model<User> = model<User>('User', UserSchema);
 export default UserModel;

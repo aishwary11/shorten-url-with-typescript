@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers, Reducer } from 'redux';
+import { logger } from 'redux-logger';
 import { FLUSH, KEY_PREFIX, PAUSE, PERSIST, PersistConfig, Persistor, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { thunk } from 'redux-thunk';
@@ -11,7 +12,7 @@ type RootState = {
   user: ReturnType<typeof userReducer>;
 };
 
-const rootReducer: Reducer<RootState> = combineReducers({
+const rootReducer: Reducer = combineReducers({
   url: urlReducer,
   user: userReducer,
 });
@@ -30,7 +31,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [KEY_PREFIX, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(thunk),
+    }).concat(thunk, logger),
 });
 
 export const persistor: Persistor = persistStore(store);

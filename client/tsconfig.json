@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "target": "ESNext",
     "types": ["vite/client"],
     "useDefineForClassFields": true,
@@ -18,10 +22,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "exclude": ["node_modules"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "exclude": ["node_modules"]
 }

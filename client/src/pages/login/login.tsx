@@ -10,10 +10,12 @@ export default function Login() {
   const token = localStorage.getItem(constant.token);
   const [formBody, setFormBody] = useState({ username: '', password: '' });
   const dispatch: AppDispatch = useDispatch();
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     await dispatch(userLogin(formBody));
   }
+
   return !token ? (
     <Container
       fluid
