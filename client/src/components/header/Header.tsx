@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../common/types';
+import { useDispatch } from 'react-redux';
+import constant from '../../common/constant';
+import { AppDispatch } from '../../common/types';
 import { userLogout } from '../../slice/userslice';
 import { ThemeAndLangContext } from '../HOC/WithLangTheme';
 
 const Header = () => {
+  const token = localStorage.getItem(constant.token);
   const dispatch: AppDispatch = useDispatch();
-  const userData: any = useSelector<RootState>(state => state.user);
   const { theme, toggleTheme, language, changeLanguage } = useContext(ThemeAndLangContext);
 
   const handleLanguageChange = (lng: string | null) => {
@@ -31,7 +32,7 @@ const Header = () => {
         >
           {theme === 'light' ? 'Dark' : 'Light'}
         </Button>
-        {userData.isLoggedIn && (
+        {token && (
           <Button
             variant="outline-danger"
             onClick={() => dispatch(userLogout())}

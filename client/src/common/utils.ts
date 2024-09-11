@@ -15,7 +15,13 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   response => response,
-  error => toastError(error.response.data.msg),
+  error => {
+    if (error.status === 401) {
+      localStorage.removeItem(constant.token);
+      window.location.replace('/login');
+    }
+    toastError(error.response.data.msg);
+  },
 );
 export const toastSuccess = (msg: string): React.ReactNode => toast.success(msg);
 export const toastError = (msg: string): React.ReactNode => toast.error(msg);

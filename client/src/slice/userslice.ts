@@ -28,7 +28,6 @@ const userSlice = createSlice({
         payload.isLoggedIn = true;
         state = payload;
         window.location.replace('/');
-        // toastSuccess(payload.msg);
         return state;
       })
       .addCase(userLogin.rejected, () => {
@@ -42,7 +41,6 @@ const userSlice = createSlice({
         localStorage.removeItem(constant.token);
         payload.isLoggedIn = false;
         state = payload;
-        window.location.replace('/login');
         return state;
       })
       .addCase(userLogout.rejected, () => {
