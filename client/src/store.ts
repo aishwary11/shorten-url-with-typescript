@@ -32,9 +32,9 @@ export const store = configureStore({
         ignoredActions: [KEY_PREFIX, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(thunk);
-    import.meta.env.VITE_ENV === "DEV" && middleware.push(logger);
+    import.meta.env.VITE_ENV === 'DEV' && middleware.push(logger);
     return middleware;
-  }
+  },
 });
 
 export const persistor: Persistor = persistStore(store);
