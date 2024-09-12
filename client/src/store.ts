@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers, Reducer } from 'redux';
-import { logger } from 'redux-logger';
+import logger from 'redux-logger';
 import { FLUSH, KEY_PREFIX, PAUSE, PERSIST, PersistConfig, Persistor, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { thunk } from 'redux-thunk';
@@ -26,12 +26,15 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  middleware: getDefaultMiddleware => {
+    const middleware = getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [KEY_PREFIX, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(thunk, logger),
+    }).concat(thunk);
+    import.meta.env.VITE_ENV === "DEV" && middleware.push(logger);
+    return middleware;
+  }
 });
 
 export const persistor: Persistor = persistStore(store);
