@@ -1,6 +1,6 @@
+import constant from '@/common/constant.js';
+import { axiosInstance, toastError } from '@/common/utils.js';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import constant from '../common/constant';
-import { axiosInstance, toastError } from '../common/utils';
 
 export const userLogin = createAsyncThunk('user/login', async (body: any) => {
   const { data } = await axiosInstance.post('/user/login', body);
@@ -14,6 +14,7 @@ export const userLogout = createAsyncThunk('user/logout', async () => {
 const initialState = {
   isLoggedIn: false,
 };
+
 const userSlice = createSlice({
   name: 'User',
   initialState,
@@ -25,10 +26,8 @@ const userSlice = createSlice({
       })
       .addCase(userLogin.fulfilled, (state, { payload }) => {
         localStorage.setItem(constant.token, payload.data.token);
-        payload.isLoggedIn = true;
-        state = payload;
+        state.isLoggedIn = true;
         window.location.replace('/');
-        return state;
       })
       .addCase(userLogin.rejected, () => {
         toastError('Something went wrong');
@@ -37,11 +36,10 @@ const userSlice = createSlice({
       .addCase(userLogout.pending, state => {
         return state;
       })
-      .addCase(userLogout.fulfilled, (state, { payload }) => {
+      .addCase(userLogout.fulfilled, state => {
         localStorage.removeItem(constant.token);
-        payload.isLoggedIn = false;
-        state = payload;
-        return state;
+        state.isLoggedIn = false;
+        window.location.replace('/login');
       })
       .addCase(userLogout.rejected, () => {
         toastError('Something went wrong');

@@ -1,6 +1,6 @@
+import { axiosInstance, toastError, toastSuccess } from '@/common/utils.js';
+import { Url } from '@/types';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Url } from '../common/types';
-import { axiosInstance, toastError, toastSuccess } from '../common/utils';
 
 export const urlList = createAsyncThunk('url/list', async () => {
   const { data } = await axiosInstance.get('/url/');

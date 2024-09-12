@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Header from './components/header/Header';
-import withTheme from './components/HOC/WithLangTheme';
-import List from './pages/list/List';
-import Login from './pages/login/login';
-import ProtectedRoutes from './routes/ProtectedRoutes';
+import Header from './components/header/Header.js';
+import withTheme from './components/HOC/WithLangTheme.js';
+import List from './pages/list/List.js';
+import Login from './pages/login/login.js';
+import ProtectedRoutes from './routes/ProtectedRoutes.js';
 import './styles.css';
 
 function App() {

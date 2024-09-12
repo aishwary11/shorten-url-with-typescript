@@ -1,6 +1,6 @@
+import constant from '@/common/constant.js';
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import constant from '../common/constant';
 
 const ProtectedRoutes: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();

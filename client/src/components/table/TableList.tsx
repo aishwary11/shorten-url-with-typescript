@@ -1,9 +1,9 @@
+import { axiosInstance, formattedDate, toastError, toastSuccess } from '@/common/utils.js';
+import { urlList } from '@/slice/urlslice.js';
+import { AppDispatch, Url } from '@/types.js';
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, Url } from '../../common/types';
-import { axiosInstance, formattedDate, toastError, toastSuccess } from '../../common/utils';
-import { urlList } from '../../slice/urlslice';
 
 const TableList = (props: any) => {
   const dispatch: AppDispatch = useDispatch();

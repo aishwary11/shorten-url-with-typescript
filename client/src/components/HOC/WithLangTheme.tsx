@@ -1,12 +1,6 @@
+import constant from '@/common/constant.js';
+import { ThemeAndLangContextProps } from '@/types.js';
 import { ComponentType, Context, createContext, FC, useState } from 'react';
-import constant from '../../common/constant';
-
-interface ThemeAndLangContextProps {
-  theme: string;
-  toggleTheme: () => void;
-  language: string;
-  changeLanguage: (lng: string) => void;
-}
 
 export const ThemeAndLangContext: Context<ThemeAndLangContextProps> = createContext<ThemeAndLangContextProps>({
   theme: constant.theme.dark,

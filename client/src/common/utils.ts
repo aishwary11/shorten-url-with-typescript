@@ -2,7 +2,7 @@ import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import React from 'react';
 import { toast } from 'react-toastify';
-import constant from './constant';
+import constant from './constant.js';
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,

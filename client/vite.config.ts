@@ -17,4 +17,9 @@ export default defineConfig({
     port: 3000,
     cors: true,
   },
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
 });

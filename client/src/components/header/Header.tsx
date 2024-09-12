@@ -1,10 +1,10 @@
+import constant from '@/common/constant.js';
+import { userLogout } from '@/slice/userslice.js';
+import { AppDispatch } from '@/types.js';
 import { useContext } from 'react';
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import constant from '../../common/constant';
-import { AppDispatch } from '../../common/types';
-import { userLogout } from '../../slice/userslice';
-import { ThemeAndLangContext } from '../HOC/WithLangTheme';
+import { ThemeAndLangContext } from '../HOC/WithLangTheme.js';
 
 const Header = () => {
   const token = localStorage.getItem(constant.token);

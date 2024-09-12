@@ -1,10 +1,10 @@
+import constant from '@/common/constant.js';
+import { userLogin } from '@/slice/userslice.js';
+import { AppDispatch } from '@/types.js';
 import { FormEvent, useState } from 'react';
 import { Button, Col, Container, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import constant from '../../common/constant';
-import { AppDispatch } from '../../common/types';
-import { userLogin } from '../../slice/userslice';
 
 export default function Login() {
   const token = localStorage.getItem(constant.token);

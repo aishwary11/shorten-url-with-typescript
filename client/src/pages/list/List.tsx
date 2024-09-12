@@ -1,10 +1,10 @@
+import { axiosInstance, toastError, toastSuccess } from '@/common/utils.js';
+import TableList from '@/components/table/TableList.js';
+import { urlList } from '@/slice/urlslice.js';
+import { AppDispatch, RootState } from '@/types.js';
 import { useEffect, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../common/types';
-import { axiosInstance, toastError, toastSuccess } from '../../common/utils';
-import TableList from '../../components/table/TableList';
-import { urlList } from '../../slice/urlslice';
 
 export default function List() {
   const [url, setUrl] = useState<string>('');
