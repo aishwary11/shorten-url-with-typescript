@@ -36,7 +36,7 @@ const TableList = (props: any) => {
         </tr>
       </thead>
       <tbody>
-        {props.urlData.data.map((data: Url, i: number) => (
+        {props.urlData.map((data: Url, i: number) => (
           <tr key={i}>
             <td>{i + 1}</td>
             <td>

@@ -10,7 +10,6 @@ export default function List() {
   const [url, setUrl] = useState<string>('');
   const dispatch: AppDispatch = useDispatch();
   const urlData: any = useSelector<RootState>(state => state.url);
-
   useEffect(() => {
     dispatch(urlList());
   }, []);
@@ -46,7 +45,7 @@ export default function List() {
             Shorten URL
           </Button>
         </InputGroup>
-        {urlData.data != undefined && urlData.data.length > 0 ? <TableList urlData={urlData} /> : <p>No data</p>}
+        {urlData != undefined && urlData.length > 0 ? <TableList urlData={urlData} /> : <p>No data</p>}
       </Form>
     </div>
   );

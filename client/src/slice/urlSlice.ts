@@ -9,7 +9,7 @@ export const urlList = createAsyncThunk('url/list', async () => {
 
 const initialState: Url[] = [];
 const urlSlice = createSlice({
-  name: 'Url',
+  name: 'url',
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -19,7 +19,7 @@ const urlSlice = createSlice({
       })
       .addCase(urlList.fulfilled, (state, { payload }) => {
         toastSuccess(payload.msg);
-        state = payload;
+        state = payload.data;
         return state;
       })
       .addCase(urlList.rejected, () => {
