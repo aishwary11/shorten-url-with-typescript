@@ -3,6 +3,6 @@ import responseHandler from '../common/utils/responsehelpers';
 
 export default function logger(err: Error, req: Request, res: Response, next: NextFunction) {
   if (err) return responseHandler(res, 500, `Error: ${err.message}`);
-  console.log('Url: ', req.url);
+  console.log('Method:', req.method, 'Url: ', req.url, 'body: ', req.body, 'Time:', new Intl.DateTimeFormat().format(new Date()));
   next();
 }
