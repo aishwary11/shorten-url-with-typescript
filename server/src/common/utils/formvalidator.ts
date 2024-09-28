@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
+import { STATUS_CODES } from '../constant';
 import responseHandler from './responsehelpers';
 
 const formSchema = Joi.object({
@@ -12,7 +13,7 @@ export const validateForm = async (req: Request, res: Response, next: NextFuncti
   const { error } = formSchema.validate(req.body);
   if (error) {
     const errorMessage = error.details.map(detail => detail.message).join(', ');
-    return responseHandler(res, 400, errorMessage);
+    return responseHandler(res, STATUS_CODES.BAD_REQUEST, errorMessage);
   }
   next();
 };
