@@ -1,9 +1,7 @@
 import cors from 'cors';
 import 'dotenv/config';
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import helmet from 'helmet';
-import { STATUS_CODES } from './common/constant';
-import responseHandler from './common/utils/responsehelpers';
 import connectDB from './db/config';
 import errorMiddleware from './middleware/error';
 import isAuthenticated from './middleware/isauthenticated';
@@ -21,6 +19,5 @@ app.use(logger);
 app.use('/user', userRouter);
 app.use(isAuthenticated);
 app.use('/url', urlRouter);
-app.get('*', (req: Request, res: Response) => responseHandler(res, STATUS_CODES.NOT_FOUND, 'Page Not Found'));
 app.use(errorMiddleware);
 app.listen(port, () => console.log(`Server Started at ${port}`));
