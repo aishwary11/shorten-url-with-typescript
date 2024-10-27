@@ -18,7 +18,7 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/mongoose": "^5.11.97",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.8.1",
     "@types/shortid": "^0.0.32",
     "@types/valid-url": "^1.0.7",
     "prettier": "^3.3.3",
@@ -32,7 +32,7 @@
     "helmet": "^8.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.7.1",
+    "mongoose": "^8.7.3",
     "shortid": "^2.2.16",
     "valid-url": "^1.0.9"
   }
