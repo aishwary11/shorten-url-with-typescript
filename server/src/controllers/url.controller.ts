@@ -4,7 +4,7 @@ import validUrl from 'valid-url';
 import { STATUS_CODES } from '../common/constant';
 import asyncHandler from '../common/utils/asynchandler';
 import responseHandler from '../common/utils/responsehelpers';
-import URL from '../model/Url';
+import URL from '../models/Url';
 
 export const postUrl = asyncHandler(async (req: Request, res: Response) => {
   try {

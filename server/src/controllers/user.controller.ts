@@ -4,7 +4,7 @@ import { STATUS_CODES } from '../common/constant';
 import asyncHandler from '../common/utils/asynchandler';
 import responseHandler from '../common/utils/responsehelpers';
 import { generateToken } from '../common/utils/token';
-import User from '../model/User';
+import User from '../models/User';
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
   try {
