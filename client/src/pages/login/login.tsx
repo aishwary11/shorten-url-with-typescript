@@ -16,10 +16,13 @@ export default function Login() {
     setFormBody(prevState => ({ ...prevState, [name]: value }));
   }, []);
 
-  const handleSubmit = useCallback(async (event: FormEvent) => {
-    event.preventDefault();
-    await dispatch(userLogin(formBody));
-  }, [dispatch, formBody]);
+  const handleSubmit = useCallback(
+    async (event: FormEvent) => {
+      event.preventDefault();
+      await dispatch(userLogin(formBody));
+    },
+    [dispatch, formBody],
+  );
 
   if (token) {
     return <Navigate to="/" />;
