@@ -10,5 +10,8 @@
   "endOfLine": "auto",
   "embeddedLanguageFormatting": "auto",
   "singleAttributePerLine": true,
-  "htmlWhitespaceSensitivity": "strict"
+  "htmlWhitespaceSensitivity": "strict",
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed"
 }
